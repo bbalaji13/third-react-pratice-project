@@ -11,9 +11,9 @@ jobs:
         with:
           node-version: 18
       - name: install dependencies
-        uses: npm ci
+        run: npm ci
       - name: lint 
-        uses: wearerequired/lint-action@v2
+        run: wearerequired/lint-action@v2
   test:
     needs: lint
     runs-on: ubuntu-latest
@@ -25,9 +25,9 @@ jobs:
         with:
           node-version: 18
       - name: install dependencies
-        uses: npm ci
+        run: npm ci
       - name: runs test
-        uses: npm test
+        run: npm test
 
   build:
     needs: [lint , test]
@@ -40,8 +40,8 @@ jobs:
         with:
           node-version: 18
       - name: install dependencies
-        uses: npm ci
+        run: npm ci
       - name: build 
-        uses: npm run build
+        run: npm run build
 
 
