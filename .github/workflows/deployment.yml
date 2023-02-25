@@ -1,0 +1,47 @@
+name: Deploy project
+on: push
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: install NodeJs
+        with:
+          node-version: 18
+      - name: install dependencies
+        uses: npm ci
+      - name: lint 
+        uses: wearerequired/lint-action@v2
+  test:
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: install NodeJs
+        with:
+          node-version: 18
+      - name: install dependencies
+        uses: npm ci
+      - name: runs test
+        uses: npm test
+
+  build:
+    needs: [lint , test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: install NodeJs
+        uses: install NodeJs
+        with:
+          node-version: 18
+      - name: install dependencies
+        uses: npm ci
+      - name: build 
+        uses: npm run build
+
+
